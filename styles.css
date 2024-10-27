@@ -1,3 +1,4 @@
+@charset "UTF-8";
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -288,18 +289,20 @@ body {
 }
 
 .product-info {
-    display: flex;
+    
     align-items: center;
     justify-content: space-between;
     margin-top: 0.75rem;
 }
 
 .product-price {
+   
     font-weight: bold;
     font-size: 1.125rem;
 }
 
 .add-to-cart-btn i {
+    
      font-size: 1.2rem;
     margin-right: 0.5rem;
 } 

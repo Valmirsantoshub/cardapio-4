@@ -95,9 +95,9 @@ body {
     font-weight: bold;
 }
 
-.product-description {
+/* .product-description {
     font-size: 0.875rem;
-}
+} */
 
 .product-details {
     display: flex;
@@ -109,6 +109,8 @@ body {
 .product-price {
     font-weight: bold;
     font-size: 1.125rem;
+    padding-left:20px ;
+    padding-right:20px;
 }
 
 .add-to-cart-btn {
@@ -295,11 +297,11 @@ body {
     margin-top: 0.75rem;
 }
 
-.product-price {
+/* .product-price {
    
     font-weight: bold;
     font-size: 1.125rem;
-}
+} */
 
 .add-to-cart-btn i {
     

@@ -289,6 +289,7 @@ body {
 
 .product-name {
     font-weight: bold;
+    margin-bottom: auto;
 }
 
 .product-info {

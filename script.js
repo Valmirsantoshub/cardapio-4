@@ -132,18 +132,18 @@ checkoutBtn.addEventListener("click", function(){
 
          const isOpen = checkRestauranteOpen();
          if(!isOpen){}
-        // Toastify({                                   //ALERTA PERSONALIZADO DE FECHADO
-        //     text: "O restaurante está fechado.",
-        //     duration: 3000,
-        //     stopOnfocus: true,
-        //     close: true,
-        //     gravity: "top",
-        //     position: "center",
-        //     style: {
-        //     background: " #ef4444",
-        // },
-        // }).showToast();
-        // return;
+         Toastify({                                   //ALERTA PERSONALIZADO DE FECHADO
+             text: "O restaurante está fechado.",
+             duration: 3000,
+             stopOnfocus: true,
+             close: true,
+             gravity: "top",
+             position: "center",
+             style: {
+             background: " #ef4444",
+         },
+         }).showToast();
+         return;
 
 
     if(cart.length === 0) return;
@@ -176,7 +176,7 @@ checkoutBtn.addEventListener("click", function(){
 function checkRestauranteOpen(){
     const date = new Date();
     const hora = date.getHours();
-    return hora >= 10 && hora < 22;
+    return hora >=10 && hora < 22;
     // TRUE RESTAURANTE ESTA ABERTO
 }
 

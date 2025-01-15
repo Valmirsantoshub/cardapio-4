@@ -128,22 +128,22 @@ addressInput.addEventListener("input", function(event){
 
 // FINALIZAR PEDIDO
 
-checkoutBtn.addEventListener("click", function(){
+// checkoutBtn.addEventListener("click", function(){
 
-         const isOpen = checkRestauranteOpen();
-         if(!isOpen){}
-         Toastify({                                   //ALERTA PERSONALIZADO DE FECHADO
-             text: "O restaurante está fechado.",
-             duration: 3000,
-             stopOnfocus: true,
-             close: true,
-             gravity: "top",
-             position: "center",
-             style: {
-             background: " #ef4444",
-         },
-         }).showToast();
-         return;
+//          const isOpen = checkRestauranteOpen();
+//          if(!isOpen){}
+//          Toastify({                                   //ALERTA PERSONALIZADO DE FECHADO
+//              text: "O restaurante está fechado.",
+//              duration: 3000,
+//              stopOnfocus: true,
+//              close: true,
+//              gravity: "top",
+//              position: "center",
+//              style: {
+//              background: " #ef4444",
+//          },
+//          }).showToast();
+//          return;
 
 
     if(cart.length === 0) return;

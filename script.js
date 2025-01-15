@@ -12,27 +12,27 @@ const addresswarn = document.getElementById("address-warn")
 let cart = [];
 
 // ABRIR MODAL CARRINHO
-cartBtn.addEventListener("click", function(){
+cartBtn.addEventListener("click", function () {
     updateCartModal();
     cartModal.style.display = "flex"
 })
 // FECHAR MODAL CARRINHO
-cartModal.addEventListener("click", function(event){
-    if(event.target === cartModal)
-     cartModal.style.display = "none"
+cartModal.addEventListener("click", function (event) {
+    if (event.target === cartModal)
+        cartModal.style.display = "none"
 
 })
 
-closeModalBtn.addEventListener("click", function(){
+closeModalBtn.addEventListener("click", function () {
     cartModal.style.display = "none"
-   
+
 })
 
-menu.addEventListener("click", function(event){
+menu.addEventListener("click", function (event) {
     // console.log(event.target)
 
     let parentButton = event.target.closest(".add-to-cart-btn")
-    if(parentButton){
+    if (parentButton) {
         const name = parentButton.getAttribute("data-name")
         const price = parseFloat(parentButton.getAttribute("data-price"))
         addToCart(name, price)
@@ -40,13 +40,13 @@ menu.addEventListener("click", function(event){
 
 })
 // FUNCAO PARA ADICONAR NO CARRINHO
-function addToCart(name, price){
+function addToCart(name, price) {
     const existingItem = cart.find(item => item.name === name)
-    if(existingItem){
+    if (existingItem) {
         // se o item ja existe aumenta apenas a quantidade
         existingItem.quantity += 1;
 
-    }else{
+    } else {
 
         cart.push({
             name,
@@ -58,7 +58,7 @@ function addToCart(name, price){
 }
 
 // ATUALIZA O CARRINHO
-function updateCartModal(){
+function updateCartModal() {
     cartItemsContainer.innerHTML = "";
     let total = 0;
 
@@ -81,31 +81,31 @@ function updateCartModal(){
         total += item.price * item.quantity;
 
         cartItemsContainer.appendChild(cartItemElement)
-})
+    })
 
-cartTotal.textContent = total.toLocaleString("PT-BR", {
-    style: "currency",
-    currency: "BRL"
+    cartTotal.textContent = total.toLocaleString("PT-BR", {
+        style: "currency",
+        currency: "BRL"
 
-});
-cartCounter.innerHTML = cart.length;
+    });
+    cartCounter.innerHTML = cart.length;
 
 }
 
 // FUNCAO PARA REMOVER ITEM DO CARRINHO
-cartItemsContainer.addEventListener("click", function(event){
-    if(event.target.classList.contains("remove-from-cart-btn")){
+cartItemsContainer.addEventListener("click", function (event) {
+    if (event.target.classList.contains("remove-from-cart-btn")) {
         const name = event.target.getAttribute("data-name")
         removeItemCart(name);
     }
 
 })
 
-function removeItemCart(name){
+function removeItemCart(name) {
     const index = cart.findIndex(item => item.name === name);
-    if(index !== -1){
+    if (index !== -1) {
         const item = cart[index];
-        if(item.quantity > 1){
+        if (item.quantity > 1) {
             item.quantity -= 1;
             updateCartModal();
             return;
@@ -115,39 +115,39 @@ function removeItemCart(name){
     }
 }
 
-addressInput.addEventListener("input", function(event){
+addressInput.addEventListener("input", function (event) {
     let inputValue = event.target.value;
 
-    if(inputValue !== ""){
+    if (inputValue !== "") {
         addressInput.classList.remove("border-red-500")
         addresswarn.classList.add("hidden")
-    
+
     }
 
 })
 
 // FINALIZAR PEDIDO
 
-checkoutBtn.addEventListener("click", function(){
+checkoutBtn.addEventListener("click", function () {
 
-         const isOpen = checkRestauranteOpen();
-         if(!isOpen){}
-          Toastify({                                   //ALERTA PERSONALIZADO DE FECHADO
-              text: "O restaurante está fechado.",
-              duration: 3000,
-              stopOnfocus: true,
-              close: true,
-              gravity: "top",
-              position: "center",
-              style: {
-              background: " #ef4444",
-          },
-         }).showToast();
-         return;
+    // const isOpen = checkRestauranteOpen();
+    // if (!isOpen) { }
+    // Toastify({                                   //ALERTA PERSONALIZADO DE FECHADO
+    //     text: "O restaurante está fechado.",
+    //     duration: 3000,
+    //     stopOnfocus: true,
+    //     close: true,
+    //     gravity: "top",
+    //     position: "center",
+    //     style: {
+    //         background: " #ef4444",
+    //     },
+    // }).showToast();
+    // return;
 
 
-    if(cart.length === 0) return;
-    if(addressInput.value === ""){
+    if (cart.length === 0) return;
+    if (addressInput.value === "") {
         addresswarn.classList.remove("hidden")
         addressInput.classList.add("border-red-500")
         return;
@@ -155,7 +155,7 @@ checkoutBtn.addEventListener("click", function(){
     }
 
     // ENVIAR O PEDIDO PARA O WHATSAPP
-    const cartItems = cart.map((item) =>{
+    const cartItems = cart.map((item) => {
         return (
             ` ${item.name} Quantidade: (${item.quantity}) preço: R$${item.price} |`
         )
@@ -163,29 +163,29 @@ checkoutBtn.addEventListener("click", function(){
     }).join("")
 
     const message = encodeURIComponent(cartItems)
-    const phone = "551166087062"
+    const phone = "5511966087062"
     window.open(`https://wa.me/${phone}?text=${message} Endereço: ${addressInput.value}`, "_blank")
 
-    cart =[];
+    cart = [];
     updateCartModal();
 
-    
+
 })
-   
+
 // VERIFICAR O HORARIO DE FUNCIONAMENTO
-function checkRestauranteOpen(){
+function checkRestauranteOpen() {
     const date = new Date();
     const hora = date.getHours();
-    return hora >=10 && hora < 22;
+    return hora >= 10 && hora < 22;
     // TRUE RESTAURANTE ESTA ABERTO
 }
 
 const spanItem = document.getElementById("date-span")
 const isOpen = checkRestauranteOpen();
-if(isOpen){
+if (isOpen) {
     spanItem.classList.remove("bg-red-500")
     spanItem.classList.add("bg-green-600")
-}else{
+} else {
     spanItem.classList.remove("bg-green-600")
     spanItem.classList.add("bg-red-500")
 }
